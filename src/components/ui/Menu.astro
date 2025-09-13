@@ -1,0 +1,53 @@
+---
+
+---
+
+<aside
+  id="menu"
+  class="w-dvw h-dvh fixed -right-full bg-light transform duration-300 ease-in-out"
+>
+  <header class="w-full h-28 grid p-4 fixed">
+    <nav id="nav" class="grid grid-cols-[80px_1fr_80px] grid-rows-1">
+      <a class="grid place-content-center">
+        <img
+          src="/cima_dark.png"
+          alt="Logotípo de CIMA"
+          class="w-full h-full object-contain"
+        />
+      </a>
+      <div></div>
+      <label class="grid place-content-center" aria-label="Menú principal">
+        <span class="text-red-wine text-3xl">✕</span>
+        <input id="close-menu" type="checkbox" class="hidden" />
+      </label>
+    </nav>
+  </header>
+</aside>
+
+<script>
+  const openMenu = document.querySelector("#open-menu") as HTMLInputElement;
+
+  const closeMenu = document.querySelector("#close-menu") as HTMLInputElement;
+
+  const menu = document.querySelector("#menu");
+
+  openMenu.addEventListener("change", function (e) {
+    e.preventDefault();
+
+    if (!menu || !openMenu.checked) return;
+
+    menu.classList.replace("-right-full", "-right-0");
+
+    closeMenu.checked = false;
+  });
+
+  closeMenu.addEventListener("change", function (e) {
+    e.preventDefault();
+
+    if (!menu || !closeMenu.checked) return;
+
+    menu.classList.replace("-right-0", "-right-full");
+
+    openMenu.checked = false;
+  });
+</script>

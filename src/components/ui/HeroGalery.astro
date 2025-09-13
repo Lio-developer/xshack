@@ -1,0 +1,151 @@
+---
+import Front from "./Front.astro";
+---
+
+<article
+  class="sticky top-0 w-full h-dvh grid grid-cols-[1fr_3fr_1fr] grid-rows-1 gap-4 bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 overflow-hidden"
+>
+  <div>
+    <div class="w-full h-[calc(45%-8px)] mb-4">
+      <img
+        src="assets/s1.webp"
+        alt="source"
+        class="w-full h-full object-cover object-center-top"
+      />
+    </div>
+    <div class="w-full h-[calc(55%-8px)]">
+      <img
+        src="assets/s2.avif"
+        alt="source"
+        class="w-full h-full object-cover"
+      />
+    </div>
+  </div>
+  <div class="grid grid-cols-1 grid-rows-4 gap-4">
+    <div>
+      <img
+        src="assets/s3.avif"
+        alt="source"
+        class="w-full h-full object-cover object-center"
+      />
+    </div>
+    <div id="hero-area" class="relative row-span-2">
+      <img
+        id="hero-image"
+        src="assets/hero.avif"
+        alt="hero-image"
+        class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-full h-full object-cover"
+      />
+    </div>
+    <div class="">
+      <img
+        src="assets/s4.avif"
+        alt="source"
+        class="w-full h-full object-cover"
+      />
+    </div>
+  </div>
+  <div>
+    <div class="w-full h-[calc(70%-8px)] mb-4">
+      <img
+        src="assets/s5.webp"
+        alt="source"
+        class="w-full h-full object-cover object-center-top"
+      />
+    </div>
+    <div class="w-full h-[calc(30%-8px)]">
+      <img
+        src="assets/s6.avif"
+        alt="source"
+        class="w-full h-full object-cover"
+      />
+    </div>
+  </div>
+  <Front />
+  <div id="loader" class="absolute inset-0 bg-dark duration-300 ease-in-out">
+  </div>
+</article>
+
+<script>
+  const loader = document.querySelector("#loader") as HTMLElement;
+
+  if (loader) {
+    setTimeout(() => {
+      loader.classList.add("opacity-0");
+    }, 100);
+
+    setTimeout(() => {
+      loader.classList.add("hidden");
+    }, 500);
+  }
+
+  const viewportRatio: number = window.innerWidth / window.innerHeight;
+
+  const offset: number = window.innerHeight;
+
+  const section = document.querySelector("#hero") as HTMLElement;
+
+  const container = document.querySelector("#hero-area") as HTMLElement;
+
+  const element = document.querySelector("#hero-image") as HTMLElement;
+
+  let containerRatio: number | null;
+
+  let scale: number | null;
+
+  let percentage: number | null;
+
+  if (section && container && element) {
+    const { width, height } = container.getBoundingClientRect();
+
+    containerRatio = width / height;
+
+    if (viewportRatio > containerRatio) scale = window.innerWidth / width;
+    else scale = window.innerHeight / height;
+
+    element.style = `transform: scale(${scale});`;
+
+    percentage =
+      Math.abs(1 - scale) /
+      (section.getBoundingClientRect().height / 2 + offset);
+  }
+
+  function calculateScale() {
+    const { width, height } = container.getBoundingClientRect();
+    containerRatio = width / height;
+
+    if (viewportRatio > containerRatio) scale = window.innerWidth / width;
+    else scale = window.innerHeight / height;
+
+    element.style.transform = `scale(${scale})`;
+
+    percentage =
+      Math.abs(1 - scale) /
+      (section.getBoundingClientRect().height / 2 + offset);
+  }
+
+  function updateOnScroll() {
+    if (!scale || !percentage) return;
+    const scroll = window.scrollY;
+
+    if (scroll + offset < section.getBoundingClientRect().height) {
+      const newScale = Math.max(1, scale - scroll * percentage);
+      element.style.transform = `scale(${newScale})`;
+    } else {
+      element.style.transform = `scale(1)`;
+    }
+    ticking = false;
+  }
+
+  calculateScale();
+
+  let ticking = false;
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      requestAnimationFrame(updateOnScroll);
+      ticking = true;
+    }
+  });
+
+  window.addEventListener("resize", calculateScale);
+</script>
