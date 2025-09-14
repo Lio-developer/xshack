@@ -95,23 +95,11 @@ import Front from "./Front.astro";
 
   let percentage: number | null;
 
-  if (section && container && element) {
-    const { width, height } = container.getBoundingClientRect();
-
-    containerRatio = width / height;
-
-    if (viewportRatio > containerRatio) scale = window.innerWidth / width;
-    else scale = window.innerHeight / height;
-
-    element.style = `transform: scale(${scale});`;
-
-    percentage =
-      Math.abs(1 - scale) /
-      (section.getBoundingClientRect().height / 2 + offset);
-  }
-
   function calculateScale() {
     const { width, height } = container.getBoundingClientRect();
+
+    if (width < 640) return;
+
     containerRatio = width / height;
 
     if (viewportRatio > containerRatio) scale = window.innerWidth / width;
@@ -123,6 +111,8 @@ import Front from "./Front.astro";
       Math.abs(1 - scale) /
       (section.getBoundingClientRect().height / 2 + offset);
   }
+
+  calculateScale();
 
   function updateOnScroll() {
     if (!scale || !percentage) return;
@@ -137,15 +127,14 @@ import Front from "./Front.astro";
     ticking = false;
   }
 
-  calculateScale();
-
   let ticking = false;
+
   window.addEventListener("scroll", () => {
-    if (!ticking) {
+    if (!ticking && window.innerWidth > 640) {
       requestAnimationFrame(updateOnScroll);
       ticking = true;
     }
   });
 
-  // window.addEventListener("resize", calculateScale);
+  window.addEventListener("resize", calculateScale);
 </script>
