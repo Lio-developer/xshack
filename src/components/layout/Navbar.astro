@@ -2,18 +2,25 @@
 
 <header
   id="header"
-  class="w-full h-22 flex justify-between items-center p-4 bg-transparent fixed z-50 duration-500 ease-in-out"
+  class="w-full h-22 flex justify-between items-center p-4 fixed z-50 duration-500"
 >
-  <a class="w-14 h-14">
+  <button
+    class="w-12 h-12 flex justify-center items-center rounded-xl border border-light/20 text-light"
+    >&#9728;</button
+  >
+  <a
+    class="w-14 h-14 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-md flex items-center justify-center"
+  >
     <img
       src="/cima_light.png"
       alt="cima-logo"
       class="w-full h-full object-cover"
     />
   </a>
+
   <label
     role="button"
-    class="w-14 h-14 flex flex-col justify-center items-center gap-2 px-3"
+    class="w-12 h-12 flex flex-col justify-center items-center gap-2 p-3 rounded-xl border border-light/20"
     for="menu-cta"
   >
     <span class="w-full h-[3px] bg-light"></span>
@@ -24,13 +31,6 @@
 </header>
 
 <script>
-  const header = document.querySelector("#header") as HTMLElement;
-
-  window.addEventListener("scroll", function (): void {
-    if (this.scrollY) header.classList.replace("bg-transparent", "bg-dark");
-    else header.classList.replace("bg-dark", "bg-transparent");
-  });
-
   const menuCta = document.querySelector("#menu-cta") as HTMLInputElement;
 
   const menu = document.querySelector("#menu") as HTMLElement;
