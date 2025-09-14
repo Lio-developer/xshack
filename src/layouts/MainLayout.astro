@@ -1,5 +1,6 @@
 ---
 import Navbar from "@/components/layout/Navbar.astro";
+import Menu from "@/components/ui/Menu.astro";
 import Footer from "@/components/layout/Footer.astro";
 import "@/styles/global.css";
 
@@ -22,6 +23,7 @@ const description =
   </head>
   <body class="bg-light">
     <Navbar />
+    <Menu />
     <main>
       <slot />
     </main>

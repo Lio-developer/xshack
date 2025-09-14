@@ -1,5 +1,46 @@
----
-import Menu from "@/components/ui/Menu.astro";
----
+<style></style>
 
-<header class="w-full h-28 grid p-4 fixed"></header>
+<header
+  id="header"
+  class="w-full h-22 flex justify-between items-center p-4 bg-transparent fixed z-50 duration-500 ease-in-out"
+>
+  <a class="w-14 h-14">
+    <img
+      src="/public/cima_light.png"
+      alt="cima-logo"
+      class="w-full h-full object-cover"
+    />
+  </a>
+  <label
+    role="button"
+    class="w-14 h-14 flex flex-col justify-center items-center gap-2 px-3"
+    for="menu-cta"
+  >
+    <span class="w-full h-[3px] bg-light"></span>
+    <span class="w-full h-[3px] bg-light"></span>
+    <span class="w-full h-[3px] bg-light"></span>
+    <input id="menu-cta" type="checkbox" class="hidden" />
+  </label>
+</header>
+
+<script>
+  const header = document.querySelector("#header") as HTMLElement;
+
+  window.addEventListener("scroll", function (): void {
+    if (this.scrollY) header.classList.replace("bg-transparent", "bg-dark");
+    else header.classList.replace("bg-dark", "bg-transparent");
+  });
+
+  const menuCta = document.querySelector("#menu-cta") as HTMLInputElement;
+
+  const menu = document.querySelector("#menu") as HTMLElement;
+
+  if (menuCta)
+    menuCta.addEventListener("change", function (): void {
+      if (menu.classList.contains("-right-full")) {
+        menu.classList.replace("-right-full", "-right-0");
+      } else {
+        menu.classList.replace("-right-0", "-right-full");
+      }
+    });
+</script>
