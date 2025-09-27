@@ -8,7 +8,7 @@ import Front from "@/components/ui/Front.astro";
   <div>
     <div class="w-full h-[calc(45%-8px)] mb-4">
       <img
-        src="assets/galery/s1.avif"
+        src="assets/galery/s1.webp"
         alt="source"
         class="w-full h-full object-cover object-center-top"
       />
@@ -32,14 +32,14 @@ import Front from "@/components/ui/Front.astro";
     <div id="hero-area" class="relative row-span-2">
       <img
         id="hero-image"
-        src="assets/galery/s4.avif"
+        src="assets/galery/hero.avif"
         alt="hero-image"
         class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-full h-full object-cover"
       />
     </div>
     <div class="">
       <img
-        src="assets/galery/s5.avif"
+        src="assets/galery/s4.avif"
         alt="source"
         class="w-full h-full object-cover"
       />
@@ -48,14 +48,14 @@ import Front from "@/components/ui/Front.astro";
   <div>
     <div class="w-full h-[calc(70%-8px)] mb-4">
       <img
-        src="assets/galery/s6.avif"
+        src="assets/galery/s5.webp"
         alt="source"
         class="w-full h-full object-cover object-center-top"
       />
     </div>
     <div class="w-full h-[calc(30%-8px)]">
       <img
-        src="assets/galery/s7.avif"
+        src="assets/galery/s6.avif"
         alt="source"
         class="w-full h-full object-cover"
       />
@@ -96,8 +96,6 @@ import Front from "@/components/ui/Front.astro";
   function calculateScale() {
     const { width, height } = container.getBoundingClientRect();
 
-    if (width < 640) return;
-
     containerRatio = width / height;
 
     if (viewportRatio > containerRatio) scale = window.innerWidth / width;
@@ -128,7 +126,7 @@ import Front from "@/components/ui/Front.astro";
   let ticking = false;
 
   window.addEventListener("scroll", () => {
-    if (!ticking && window.innerWidth > 640) {
+    if (!ticking) {
       requestAnimationFrame(updateOnScroll);
       ticking = true;
     }

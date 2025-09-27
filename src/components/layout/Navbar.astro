@@ -1,45 +1,64 @@
-<style></style>
-
-<header
-  id="header"
-  class="w-full h-22 flex justify-between items-center p-4 fixed z-50 duration-500"
->
-  <button
-    class="w-12 h-12 flex justify-center items-center rounded-xl border border-light/20 text-light"
-    >&#9728;</button
+<header class="w-full h-22 fixed z-50 overflow-hidden">
+  <nav
+    id="navbar"
+    class="absolute inset-0 -top-32 flex justify-between items-center px-4 duration-1000 ease-in-out"
   >
-  <a
-    class="w-14 h-14 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 shadow-md flex items-center justify-center"
-  >
-    <img
-      src="/cima_light.png"
-      alt="cima-logo"
-      class="w-full h-full object-cover"
-    />
-  </a>
-
-  <label
-    class="w-12 h-12 flex flex-col justify-center items-center gap-2 p-3 rounded-xl border border-light/20"
-    for="menu-cta"
-  >
-    <span class="w-full h-[3px] bg-light"></span>
-    <span class="w-full h-[3px] bg-light"></span>
-    <span class="w-full h-[3px] bg-light"></span>
-    <input id="menu-cta" type="checkbox" class="hidden" />
-  </label>
+    <button class="w-10 h-10" aria-label="screen mode"></button>
+    <a class="w-[43px] flex items-center justify-center">
+      <img
+        src="/assets/logo.svg"
+        alt="xshack-logo"
+        class="w-full h-full object-contain"
+      />
+    </a>
+    <label
+      class="w-10 h-10 flex flex-col justify-center items-center gap-2 p-2"
+      for="menu-cta"
+    >
+      <span
+        id="hight-bar"
+        class="w-full h-[2px] bg-light duration-500 ease-in-out"></span>
+      <span
+        id="middle-bar"
+        class="w-full h-[2px] bg-light duration-300 ease-in-out"></span>
+      <span
+        id="low-bar"
+        class="w-full h-[2px] bg-light duration-500 ease-in-out"></span>
+      <input id="menu-cta" type="checkbox" class="hidden" />
+    </label>
+  </nav>
 </header>
 
 <script>
+  const navbar = document.querySelector("#navbar") as HTMLElement;
+
+  if (navbar) {
+    navbar.classList.replace("-top-32", "-top-0");
+    navbar.classList.replace("opacity-0", "opacity-100");
+  }
+
   const menuCta = document.querySelector("#menu-cta") as HTMLInputElement;
 
   const menu = document.querySelector("#menu") as HTMLElement;
+
+  const hightBar = document.querySelector("#hight-bar") as HTMLElement;
+
+  const middleBar = document.querySelector("#middle-bar") as HTMLElement;
+
+  const lowBar = document.querySelector("#low-bar") as HTMLElement;
 
   if (menuCta)
     menuCta.addEventListener("change", function (): void {
       if (menu.classList.contains("-right-full")) {
         menu.classList.replace("-right-full", "-right-0");
+        hightBar.classList.add("translate-y-[10px]", "rotate-45");
+        middleBar.classList.replace("w-full", "w-0");
+        lowBar.classList.add("-translate-y-[10px]", "-rotate-45");
       } else {
         menu.classList.replace("-right-0", "-right-full");
+        middleBar.classList.replace("w-0", "w-full");
+        hightBar.classList.remove("translate-y-[10px]", "rotate-45");
+        lowBar.classList.remove("-translate-y-[10px]", "-rotate-45");
       }
     });
 </script>
