@@ -1,8 +1,10 @@
 ---
 import Navbar from "@/components/layout/Navbar.astro";
-import Menu from "@/components/ui/Menu.astro";
+import Menu from "@/components/layout/Menu.astro";
 import Footer from "@/components/layout/Footer.astro";
 import "@/styles/global.css";
+
+const title = "XSHACK - An Elevated Cannabis Experience";
 
 const description =
   "XShack connects cannabis consumers with top local dispensaries through personalized shopping, real-time navigation, and exclusive rewards. Discover products, track preferences, and elevate your cannabis experience—all in one smart platform.";
@@ -19,7 +21,7 @@ const description =
       href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
       rel="stylesheet"
     />
-    <title>XSHACK - An Elevated Cannabis Experience</title>
+    <title>{title}</title>
   </head>
   <body class="bg-dark">
     <Navbar />
