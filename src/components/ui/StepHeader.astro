@@ -2,10 +2,15 @@
 const { number, action } = Astro.props;
 ---
 
-<header class="w-full h-1/3 grid grid-cols-1 grid-rows-[1fr_2fr]">
-  <div class="flex justify-between items-center px-10 text-lime-500 text-sm">
-    <p>STEP</p>
-    <p>{number}</p>
+<header class="w-full h-full grid grid-cols-1 grid-rows-2">
+  <div class="flex justify-between items-start px-10 text-lime-500 text-sm">
+    <p class="bg-dark px-2 rounded-full">STEP</p>
+    <ul class="w-40 h-4 flex justify-between items-center">
+      <li class="w-1 h-1 rounded-full bg-light"></li>
+      <li class="w-1 h-1 rounded-full bg-light"></li>
+      <li class="w-1 h-1 rounded-full bg-light"></li>
+    </ul>
+    <p class="bg-dark px-2 rounded-full">{number}</p>
   </div>
   <div class="grid place-content-center">
     <p class="text-6xl font-extrabold text-center text-light">{action}</p>
