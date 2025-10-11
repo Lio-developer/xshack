@@ -17,36 +17,36 @@
     to cannabis. And a lot more revenue for dispensaries.
   </p>
   <article
-    id="about-gallery-container"
+    id="about-gallery-target"
     class="h-[367px] grid place-content-center mt-32"
   >
     <div
       id="about-gallery"
-      class="relative scale-100 transition-all duration-700 ease-in-out"
+      class="relative scale-100 transition-all transform-gpu duration-700 ease-in-out"
     >
       <div class="absolute left-8 -top-8 w-[92px] h-[92px]">
         <img
           src="./assets/about/s1.webp"
-          class="w-full h-full object-cover rounded-full"
+          class="w-full h-full object-cover rounded-full border border-red-500 ring ring-green-500 shadow-md shadow-blue-500"
           alt="about source 1"
         />
       </div>
       <img
         src="./assets/about/s2.avif"
-        class="w-[367px] h-[367px] object-cover rounded-full"
+        class="w-[367px] h-[367px] object-cover rounded-full border border-red-500 ring ring-green-500 shadow-md shadow-blue-500"
         alt="about source 2"
       />
       <div class="absolute left-8 -bottom-22 w-[161px] h-[161px]">
         <img
           src="./assets/about/s3.avif"
-          class="w-full h-full object-cover rounded-full"
+          class="w-full h-full object-cover rounded-full border border-red-500 ring ring-green-500 shadow-md shadow-blue-500"
           alt="about source 3"
         />
       </div>
       <div class="absolute right-8 -bottom-24 w-[92px] h-[92px]">
         <img
           src="./assets/about/s4.avif"
-          class="w-full h-full object-cover rounded-full"
+          class="w-full h-full object-cover rounded-full border border-red-500 ring ring-green-500 shadow-md shadow-blue-500"
           alt="about source 4"
         />
       </div>
@@ -55,9 +55,7 @@
 </section>
 
 <script>
-  const container = document.querySelector(
-    "#about-gallery-container"
-  ) as HTMLElement;
+  const target = document.querySelector("#about-gallery-target") as HTMLElement;
 
   const gallery = document.querySelector("#about-gallery") as HTMLElement;
 
@@ -68,7 +66,7 @@
   };
 
   const observer = new IntersectionObserver((entries): void => {
-    if (!gallery) return;
+    if (!target && !gallery) return;
 
     const isIntersecting: boolean = entries[0].isIntersecting;
 
@@ -76,5 +74,5 @@
     else gallery.classList.replace("scale-100", "scale-0");
   }, options);
 
-  observer.observe(container);
+  observer.observe(target);
 </script>

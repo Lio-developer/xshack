@@ -1,0 +1,81 @@
+---
+import StepHeader from "@/components/ui/StepHeader.astro";
+---
+
+<article id="step-three" class="relative w-full h-[100lvh] overflow-x-hidden">
+  <StepHeader number="THREE" action="ENJOY THE JOURNEY" />
+  <div
+    id="step-three-bunch-one"
+    class="absolute left-[3%] -translate-x-[3%] bottom-0 w-52 h-52"
+    style="will-change: transform;"
+  >
+    <img
+      src="./assets/steps/bunch.avif"
+      class="w-full h-full object-contain"
+      alt="bunch"
+    />
+  </div>
+
+  <div
+    id="step-three-bunch-two"
+    class="absolute right-[3%] translate-x-[3%] -bottom-100 w-40 h-40"
+    style="will-change: transform;"
+  >
+    <img
+      src="./assets/steps/bunch.avif"
+      class="w-full h-full object-contain rotate-45"
+      alt="bunch"
+    />
+  </div>
+</article>
+
+<script>
+  const target = document.querySelector("#step-three") as HTMLElement;
+
+  const bunchOne = document.querySelector("#step-three-bunch-one") as HTMLElement;
+
+  const bunchTwo = document.querySelector("#step-three-bunch-two") as HTMLElement;
+
+  let ticking: boolean = false;
+
+  let zero: number | undefined = undefined;
+
+  const tickInit = (): void => {
+    if (!ticking) {
+      window.requestAnimationFrame(scrolling);
+      ticking = true;
+    }
+  };
+
+  const scrolling = (): void => {
+    if (typeof zero === "undefined") zero = window.scrollY;
+
+    const currentScroll = window.scrollY;
+
+    const delta = Math.abs(currentScroll - zero);
+
+    bunchOne.style.transform = `translateY(-${delta}px)`;
+
+    bunchTwo.style.transform = `translateY(-${delta}px)`;
+
+    ticking = false;
+  };
+
+  const options: IntersectionObserverInit = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0,
+  };
+
+  const observer = new IntersectionObserver((entries): void => {
+    if (!target || !bunchOne) return;
+
+    const isIntersecting: boolean = entries[0].isIntersecting;
+
+    if (isIntersecting) {
+      window.addEventListener("scroll", tickInit);
+    } else window.removeEventListener("scroll", tickInit);
+  }, options);
+
+  observer.observe(target);
+</script>

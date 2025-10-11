@@ -195,7 +195,7 @@ import Front from "@/components/ui/Front.astro";
 
   window.addEventListener("scroll", () => {
     if (!ticking) {
-      requestAnimationFrame(updateOnScroll);
+      window.requestAnimationFrame(updateOnScroll);
       ticking = true;
     }
   });

@@ -1,0 +1,65 @@
+---
+import StepHeader from "@/components/ui/StepHeader.astro";
+---
+
+<article id="step-one" class="relative w-full h-[100lvh]">
+  <StepHeader number="ONE" action="SING UP" />
+  <div
+    id="step-one-source"
+    class="absolute left-1/2 -translate-x-1/2 bottom-0 w-64 h-64"
+    style="will-change: transform;"
+  >
+    <img
+      src="./assets/steps/phone.webp"
+      class="w-full h-full object-contain"
+      alt="phone"
+    />
+  </div>
+</article>
+
+<script>
+  const target = document.querySelector("#step-one") as HTMLElement;
+
+  const phone = document.querySelector("#step-one-source") as HTMLElement;
+
+  let ticking: boolean = false;
+
+  let zero: number | undefined = undefined;
+
+  const tickInit = (): void => {
+    if (!ticking) {
+      window.requestAnimationFrame(scrolling);
+      ticking = true;
+    }
+  };
+
+  const scrolling = (): void => {
+    if (typeof zero === "undefined") zero = window.scrollY;
+
+    const currentScroll = window.scrollY;
+
+    const delta = Math.abs(currentScroll - zero);
+
+    phone.style.transform = `translateY(-${delta * 0.5}px)`;
+
+    ticking = false;
+  };
+
+  const options: IntersectionObserverInit = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0,
+  };
+
+  const observer = new IntersectionObserver((entries): void => {
+    if (!target || !phone) return;
+
+    const isIntersecting: boolean = entries[0].isIntersecting;
+
+    if (isIntersecting) {
+      window.addEventListener("scroll", tickInit);
+    } else window.removeEventListener("scroll", tickInit);
+  }, options);
+
+  observer.observe(target);
+</script>
