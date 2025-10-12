@@ -3,16 +3,30 @@ const { number, action } = Astro.props;
 ---
 
 <header class="w-full h-full grid grid-cols-1 grid-rows-2">
-  <div class="flex justify-between items-start px-10 text-lime-500 text-sm">
-    <p class="bg-dark px-2 rounded-full">STEP</p>
-    <ul class="w-40 h-4 flex justify-between items-center">
-      <li class="w-1 h-1 rounded-full bg-light"></li>
-      <li class="w-1 h-1 rounded-full bg-light"></li>
-      <li class="w-1 h-1 rounded-full bg-light"></li>
+  <div class="flex justify-between items-start px-10 text-sm">
+    <p class="bg-dark px-2 rounded-full text-light">STEP</p>
+    <ul class="relative w-40 h-4 flex justify-between items-center">
+      <li
+        style={`width: ${number === "ONE" ? "10px" : "4px"}; height: ${number === "ONE" ? "10px" : "4px;"}; background-color: ${number === "ONE" ? "#7ccf00" : "#fefefa"};`}
+        class="rotate-45"
+      >
+      </li>
+      <li
+        style={`width: ${number === "TWO" ? "10px" : "4px"}; height: ${number === "TWO" ? "10px" : "4px;"}; background-color: ${number === "TWO" ? "#7ccf00" : "#fefefa"};`}
+        class="rotate-45"
+      >
+      </li>
+      <li
+        style={`width: ${number === "THREE" ? "10px" : "4px"}; height: ${number === "THREE" ? "10px" : "4px;"}; background-color: ${number === "THREE" ? "#7ccf00" : "#fefefa"};`}
+        class="rotate-45"
+      >
+      </li>
     </ul>
-    <p class="bg-dark px-2 rounded-full">{number}</p>
+    <p class="bg-dark px-2 rounded-full text-lime-500">{number}</p>
   </div>
   <div class="grid place-content-center">
-    <p class="text-6xl font-extrabold text-center text-light">{action}</p>
+    <p class="text-6xl font-extrabold text-center text-light text-shadow-tripp">
+      {action}
+    </p>
   </div>
 </header>

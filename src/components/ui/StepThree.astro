@@ -6,7 +6,7 @@ import StepHeader from "@/components/ui/StepHeader.astro";
   <StepHeader number="THREE" action="ENJOY THE JOURNEY" />
   <div
     id="step-three-bunch-one"
-    class="absolute left-[3%] -translate-x-[3%] bottom-0 w-52 h-52"
+    class="absolute left-[3%] -translate-x-[3%] bottom-30 w-52 h-52"
     style="will-change: transform;"
   >
     <img
@@ -18,12 +18,12 @@ import StepHeader from "@/components/ui/StepHeader.astro";
 
   <div
     id="step-three-bunch-two"
-    class="absolute right-[15%] translate-x-[15%] -bottom-100 w-40 h-40"
+    class="absolute right-[15%] translate-x-[15%] bottom-0 w-40 h-40"
     style="will-change: transform;"
   >
     <img
       src="./assets/steps/bunch.avif"
-      class="w-full h-full object-contain rotate-45"
+      class="w-full h-full object-contain -rotate-180"
       alt="bunch"
     />
   </div>
@@ -54,9 +54,9 @@ import StepHeader from "@/components/ui/StepHeader.astro";
 
     const delta = Math.abs(currentScroll - zero);
 
-    bunchOne.style.transform = `translateY(-${delta}px)`;
+    bunchOne.style.transform = `translateY(-${delta * 0.5}px)`;
 
-    bunchTwo.style.transform = `translateY(-${delta}px)`;
+    bunchTwo.style.transform = `translateY(-${delta * 0.5}px)`;
 
     ticking = false;
   };

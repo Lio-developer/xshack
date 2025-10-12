@@ -8,6 +8,8 @@
   --color-light: #fefefa;
   --color-neutral: #808080;
   --font-josefin: "Josefin Sans", sans-serif;
+  --text-shadow-tripp: -3px -3px 1px rgba(255, 0, 0, 0.5),
+    1px 1px 7px rgba(0, 128, 0, 1), 3px 4px 1px rgba(0, 0, 255, 0.5);
 }
 
 @layer standar {
