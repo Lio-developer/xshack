@@ -3,10 +3,11 @@
 @theme {
   --color-assent-orange: #df6f45;
   --color-muted-purple: #7a606a;
+  --color-olive-green: #1c2928;
   --color-assent-green: #83bf4a;
   --color-dark: #111111;
   --color-light: #fefefa;
-  --color-neutral: #808080;
+  --color-neutral: #525050;
   --font-josefin: "Josefin Sans", sans-serif;
   --text-shadow-tripp: -3px -3px 1px rgba(255, 0, 0, 0.5),
     1px 1px 7px rgba(0, 128, 0, 1), 3px 4px 1px rgba(0, 0, 255, 0.5);

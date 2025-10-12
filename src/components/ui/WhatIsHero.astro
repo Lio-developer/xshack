@@ -1,0 +1,55 @@
+<div id="what-is-target" class="relative h-[692px] pt-30 bg-olive-green">
+  <div class="relative h-12 overflow-hidden">
+    <p
+      id="sentence-one"
+      class="absolute left-0 top-0 w-full h-12 text-5xl font-extrabold text-center text-light transition-all duration-1000 ease-in-out"
+    >
+      WHAT IS
+    </p>
+  </div>
+  <div class="relative h-12 overflow-hidden">
+    <p
+      id="sentence-two"
+      class="absolute left-0 top-0 w-full h-12 text-5xl font-extrabold text-center text-light transition-all duration-1000 ease-in-out"
+    >
+      XSHACK
+    </p>
+  </div>
+  <div class="absolute left-1/2 -translate-x-1/2 bottom-0 w-full h-5/6">
+    <img
+      src="/assets/what-is/plant.webp"
+      class="w-full h-full object-cover"
+      alt="plant"
+    />
+  </div>
+</div>
+
+<script>
+  const target = document.querySelector("#what-is-target") as HTMLElement;
+
+  const whatIs = document.querySelector("#sentence-one") as HTMLElement;
+
+  const xshack = document.querySelector("#sentence-two") as HTMLElement;
+
+  const options: IntersectionObserverInit = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.5,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    if (!target) return;
+
+    const isIntersecting: boolean = entries[0].isIntersecting;
+
+    if (isIntersecting) {
+      whatIs.classList.replace("top-14", "top-0");
+      xshack.classList.replace("top-14", "top-0");
+    } else {
+      whatIs.classList.replace("top-0", "top-14");
+      xshack.classList.replace("top-0", "top-14");
+    }
+  }, options);
+
+  observer.observe(target);
+</script>
