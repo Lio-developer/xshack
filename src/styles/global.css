@@ -6,7 +6,7 @@
   --color-olive-green: #1c2928;
   --color-assent-green: #83bf4a;
   --color-dark: #111111;
-  --color-light: #fefefa;
+  --color-light: #e0dbdb;
   --color-neutral: #525050;
   --font-josefin: "Josefin Sans", sans-serif;
   --text-shadow-tripp: -3px -3px 1px rgba(255, 0, 0, 0.5),
@@ -32,5 +32,6 @@
 
   button {
     cursor: pointer;
+    color: #e0dbdb;
   }
 }
